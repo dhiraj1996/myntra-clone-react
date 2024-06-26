@@ -7,6 +7,10 @@ function BagItems({item}) {
     dispatch(bagActions.removeFromBag(item.id))
   }
 
+  const originalPrice = Math.ceil(item.price + Math.ceil(40 / 100 * item.price));
+  const returnPeriod = 14;
+
+
   return (
     <div className="bag-items-container">
       <div className="bag-item-container">
@@ -14,24 +18,24 @@ function BagItems({item}) {
           <img className="bag-item-img" src={item.image} />
         </div>
         <div className="item-right-part">
-          <div className="company">{item.company}</div>
-          <div className="item-name">{item.item_name}</div>
+          <div className="company">{item.title}</div>
+          <div className="item-name">{item.description}</div>
           <div className="price-container">
-            <span className="current-price">₹ {item.current_price}</span>
-            <span className="original-price">₹ {item.original_price}</span>
+            <span className="current-price">₹ {item.price}</span>
+            <span className="original-price">₹ {originalPrice}</span>
             <span className="discount-percentage">
-              ({item.discount_percentage}% OFF)
+              (20% OFF)
             </span>
           </div>
           <div className="return-period">
             <span className="return-period-days">
-              {item.return_period} days
+              {returnPeriod} days
             </span>
             return available
           </div>
           <div className="delivery-details">
             Delivery by
-            <span className="delivery-details-days">{item.delivery_date}</span>
+            <span className="delivery-details-days">{returnPeriod + 10}</span>
           </div>
         </div>
 

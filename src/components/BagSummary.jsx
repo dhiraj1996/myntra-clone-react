@@ -15,8 +15,8 @@ function BagSummary({summary}) {
     let totalDiscount = 0;
 
     summary.forEach(items => {
-      totalMRP += items.original_price;
-      totalDiscount += items.original_price - items.current_price;
+      totalMRP += Math.floor(items.price);
+      totalDiscount += Math.ceil(items.price - items.price + Math.ceil(40 / 100 * items.price));
     })
 
     let finalPayment = totalMRP + CONV_FEES;
